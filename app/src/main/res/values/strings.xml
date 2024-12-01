@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Art Space</string>
+    <string name="pearl_name">Girl with the pearl earrings</string>
+    <string name="monalisa_name">The Mona Lisa</string>
+    <string name="pearl_artist">Johannes Vermeer (1665)</string>
+    <string name="monalisa_artist">Leonardo Da Vinci (1503)</string>
+    <string name="next">Next</string>
+    <string name="prev">Previous</string>
+    <string name="scream">The Scream</string>
+    <string name="scream_name">Edvard Munch (1893)</string>
+</resources>
