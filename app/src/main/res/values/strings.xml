@@ -6,6 +6,6 @@
     <string name="monalisa_artist">Leonardo Da Vinci (1503)</string>
     <string name="next">Next</string>
     <string name="prev">Previous</string>
-    <string name="scream">The Scream</string>
-    <string name="scream_name">Edvard Munch (1893)</string>
+    <string name="scream_name">The Scream</string>
+    <string name="scream_artist">Edvard Munch (1893)</string>
 </resources>

@@ -48,7 +48,9 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun DisplayPainting(modifier: Modifier = Modifier) {
-    var changePainting by remember { mutableStateOf(0) }
+    var changePainting by remember { mutableStateOf(1) }
+    var changePaintingName by remember { mutableStateOf(1)}
+    var changePaintingArtist by remember { mutableStateOf(1) }
 
     val painting = when(changePainting){
         1 -> R.drawable.pearl
@@ -56,31 +58,45 @@ fun DisplayPainting(modifier: Modifier = Modifier) {
         else -> {R.drawable.scream}
     }
 
+    val paintingName = when(changePaintingName){
+        1 -> R.string.pearl_name
+        2 -> R.string.monalisa_name
+        else -> {R.string.scream_name}
+    }
+
+    val paintingArtist = when(changePaintingArtist){
+        1 -> R.string.pearl_artist
+        2 -> R.string.monalisa_artist
+        else -> {R.string.scream_artist}
+    }
+
     Column(modifier = Modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center)
     {
-        Image(modifier = Modifier.size(350.dp), painter = painterResource(painting), contentDescription = null)
-        Text(modifier = Modifier.padding(10.dp),
-            text = stringResource(R.string.pearl_name),
-            textAlign = TextAlign.Center,
-            fontSize = 22.sp,
-            fontWeight= FontWeight.Bold
-        )
-        Text(text = stringResource(R.string.pearl_artist))
+
+        ChangePainting(painting = painting, paintingName = paintingName,
+            paintingArtist = paintingArtist,
+            paintingDescription = stringResource(paintingName))
+
         Row(modifier = Modifier.padding(top = 80.dp)){
             Button(onClick = {
-                if(changePainting > 0){
+                if(changePainting > 1 && changePaintingName > 1 && changePaintingArtist > 1){
                     changePainting--
+                    changePaintingName--
+                    changePaintingArtist--
                 }else{
-                    changePainting = 0
+                    changePainting = 1
+                    changePaintingName = 1
+                    changePaintingArtist = 1
                 }
-            }, modifier = Modifier.padding(end = 150.dp)) {
+            }, modifier = Modifier.padding(end = 120.dp)) {
                 Text(text = stringResource(R.string.prev))
-
             }
             Button(onClick = {
                 changePainting++
+                changePaintingName++
+                changePaintingArtist++
             }) {Text(text = stringResource(R.string.next))
 
             }
@@ -88,8 +104,19 @@ fun DisplayPainting(modifier: Modifier = Modifier) {
     }
 }
 
+@Composable
+fun ChangePainting(painting: Int, paintingName: Int, paintingArtist: Int, paintingDescription: String){
+    Image(modifier = Modifier.size(350.dp), painter = painterResource(painting), contentDescription = paintingDescription)
+    Text(modifier = Modifier.padding(10.dp),
+        text = stringResource(paintingName),
+        textAlign = TextAlign.Center,
+        fontSize = 22.sp,
+        fontWeight= FontWeight.Bold
+    )
+    Text(text = stringResource(paintingArtist))
+}
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun GreetingPreview() {
     ArtSpaceTheme {
